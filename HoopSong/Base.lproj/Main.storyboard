@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -42,17 +43,15 @@
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="xho-SX-3FY">
-                        <barButtonItem key="rightBarButtonItem" title="New Shot" id="ZrS-VR-xC6">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="ZrS-VR-xC6">
                             <connections>
-                                <segue destination="CGC-ad-ZPf" kind="popoverPresentation" popoverAnchorBarButtonItem="ZrS-VR-xC6" id="VEJ-ad-PiR">
-                                    <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                                </segue>
+                                <segue destination="CGC-ad-ZPf" kind="show" id="Nem-kF-6CW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="shotTableview" destination="hsJ-lW-ZZa" id="cZK-Fp-pHl"/>
+                        <outlet property="shotTableview" destination="hsJ-lW-ZZa" id="5xN-wB-xCH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="va9-Mb-sRJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -64,25 +63,43 @@
             <objects>
                 <viewController id="CGC-ad-ZPf" customClass="ShotViewController" customModule="HoopSong" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="S8X-IY-Jr3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="give your shot a title" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uzV-xL-OW4">
-                                <rect key="frame" x="50" y="150" width="293" height="34"/>
+                                <rect key="frame" x="50" y="253" width="293" height="34"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" returnKeyType="done"/>
                             </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fqw-nk-6bG">
+                                <rect key="frame" x="50" y="317" width="293" height="35"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="plain" title="Submit">
+                                    <backgroundConfiguration key="background">
+                                        <color key="backgroundColor" name="AccentColor"/>
+                                        <color key="strokeColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </backgroundConfiguration>
+                                    <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </buttonConfiguration>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="3kF-K0-soq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="uzV-xL-OW4" firstAttribute="top" secondItem="3kF-K0-soq" secondAttribute="top" constant="150" id="059-Wc-53a"/>
+                            <constraint firstItem="3kF-K0-soq" firstAttribute="trailing" secondItem="fqw-nk-6bG" secondAttribute="trailing" constant="50" id="Dr6-9K-EBH"/>
                             <constraint firstItem="uzV-xL-OW4" firstAttribute="leading" secondItem="3kF-K0-soq" secondAttribute="leading" constant="50" id="H43-nM-kGc"/>
                             <constraint firstItem="3kF-K0-soq" firstAttribute="trailing" secondItem="uzV-xL-OW4" secondAttribute="trailing" constant="50" id="nHT-A9-fKw"/>
+                            <constraint firstItem="fqw-nk-6bG" firstAttribute="top" secondItem="uzV-xL-OW4" secondAttribute="bottom" constant="30" id="ovf-no-XhS"/>
+                            <constraint firstItem="fqw-nk-6bG" firstAttribute="leading" secondItem="3kF-K0-soq" secondAttribute="leading" constant="50" id="xqV-Sn-QDm"/>
                         </constraints>
                     </view>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="kNv-x7-CrO"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="shotTitleField" destination="uzV-xL-OW4" id="jtn-PF-71c"/>
+                        <outlet property="submitButton" destination="fqw-nk-6bG" id="1T6-xA-KLt"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6o9-vN-xxh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -172,6 +189,9 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

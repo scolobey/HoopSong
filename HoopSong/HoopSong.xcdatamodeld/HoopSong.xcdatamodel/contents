@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="21754" systemVersion="22E261" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="Session" representedClassName="Session" parentEntity="Shot" syncable="YES" codeGenerationType="class">
+    <entity name="HoopsSession" representedClassName="HoopsSession" parentEntity="HoopsShot" syncable="YES" codeGenerationType="class">
         <attribute name="attempts" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="makes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="shot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Shot" inverseName="sessions" inverseEntity="Shot"/>
+        <relationship name="shot" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="HoopsShot" inverseName="sessions" inverseEntity="HoopsShot"/>
     </entity>
-    <entity name="Shot" representedClassName="Shot" syncable="YES" codeGenerationType="class">
+    <entity name="HoopsShot" representedClassName="HoopsShot" syncable="YES" codeGenerationType="class">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="Session" inverseName="shot" inverseEntity="Session"/>
+        <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HoopsSession" inverseName="shot" inverseEntity="HoopsSession"/>
     </entity>
 </model>
