@@ -12,6 +12,8 @@ import CoreData
 class ShotListViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    let sessionSegueIdentifier = "ShowSessionsSegue"
+    
     var shots: [HoopsShot] = []
     
     @IBOutlet var shotTableview: UITableView!
@@ -45,8 +47,19 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
         
         return cell
     }
+    
+    private func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+
+    private func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCell.EditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if (editingStyle == UITableViewCell.EditingStyle.delete) {
+            print("time to remove \(indexPath.row)")
+        }
+    }
 
     func fetch() {
+        print("fetching shots.")
         let request = NSFetchRequest<HoopsShot>(entityName: "HoopsShot")
         
         do {
@@ -54,6 +67,17 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
         }
         catch {
             print("error fetching shots")
+        }
+        
+        print("found \(shots.count) shots")
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if  segue.identifier == sessionSegueIdentifier,
+            let destination = segue.destination as? SessionViewController,
+            let shotIndex = shotTableview.indexPathForSelectedRow?.row
+        {
+            destination.shot = shots[shotIndex]
         }
     }
 }
