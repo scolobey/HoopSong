@@ -59,19 +59,27 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
             shotPercentage = (100 * totalMakes)/totalAttempts
         }
         
-        cell.detailTextLabel?.text = "\(totalMakes)/\(totalAttempts) - \(shotPercentage)%"
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 20.0)
         cell.textLabel?.text = shot.name
+        cell.detailTextLabel?.text = "\(totalMakes)/\(totalAttempts) - \(shotPercentage)%"
         
         return cell
     }
     
-    private func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
 
-    private func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCell.EditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if (editingStyle == UITableViewCell.EditingStyle.delete) {
-            print("time to remove \(indexPath.row)")
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            print("delete yo")
+            
+            //remove from data source
+            deleteShot(shot: shots[indexPath.row])
+            
+            //remove from view
+            shots.remove(at: indexPath.row)
+            shotTableview.reloadData()
         }
     }
     
@@ -152,8 +160,17 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
         catch {
             print("error fetching shots")
         }
+    }
+    
+    func deleteShot(shot: HoopsShot) {
+        context.delete(shot)
         
-        print("found \(shots.count) shots")
+        do {
+            try context.save()
+        }
+        catch {
+            print("error deleting shot")
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

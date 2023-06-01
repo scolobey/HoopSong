@@ -68,10 +68,8 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
         let myFormatter = DateFormatter()
         myFormatter.dateFormat = "MM/dd - HH:MM"
         
-        cell.detailTextLabel?.text = "\(myFormatter.string(from: session.createdAt!))"
-        
-        
-        cell.textLabel?.text = "\(session.makes)/\(session.attempts)"
+        cell.detailTextLabel?.text = "\(session.makes)/\(session.attempts)"
+        cell.textLabel?.text = "\(myFormatter.string(from: session.createdAt!))"
         
         return cell
     }
