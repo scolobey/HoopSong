@@ -4,10 +4,10 @@
         <attribute name="attempts" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="createdAt" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="makes" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <relationship name="shot" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="HoopsShot" inverseName="sessions" inverseEntity="HoopsShot"/>
+        <relationship name="shot" optional="YES" maxCount="1" deletionRule="Nullify" ordered="YES" destinationEntity="HoopsShot" inverseName="sessions" inverseEntity="HoopsShot"/>
     </entity>
     <entity name="HoopsShot" representedClassName=".HoopsShot" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String"/>
-        <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Cascade" ordered="YES" destinationEntity="HoopsSession" inverseName="shot" inverseEntity="HoopsSession"/>
+        <relationship name="sessions" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="HoopsSession" inverseName="shot" inverseEntity="HoopsSession"/>
     </entity>
 </model>

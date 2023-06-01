@@ -17,30 +17,21 @@ extension HoopsShot {
     }
 
     @NSManaged public var name: String?
-    @NSManaged public var sessions: NSOrderedSet?
+    @NSManaged public var sessions: NSSet?
 
+    public var sessionArray: [HoopsSession] {
+        let sessionSet = sessions as? Set<HoopsSession> ?? []
+        
+        // Set a default date for 20 years ago, and hopefully this never gets used
+        // because the date should be set from the beginning.
+        let defaultDate = Calendar.current.date(byAdding: .year, value: -20, to: Date())
+        
+        return sessionSet.sorted(by: { $0.createdAt?.compare((($1.createdAt ?? defaultDate)!)) == .orderedDescending })
+    }
 }
 
 // MARK: Generated accessors for sessions
 extension HoopsShot {
-
-    @objc(insertObject:inSessionsAtIndex:)
-    @NSManaged public func insertIntoSessions(_ value: HoopsSession, at idx: Int)
-
-    @objc(removeObjectFromSessionsAtIndex:)
-    @NSManaged public func removeFromSessions(at idx: Int)
-
-    @objc(insertSessions:atIndexes:)
-    @NSManaged public func insertIntoSessions(_ values: [HoopsSession], at indexes: NSIndexSet)
-
-    @objc(removeSessionsAtIndexes:)
-    @NSManaged public func removeFromSessions(at indexes: NSIndexSet)
-
-    @objc(replaceObjectInSessionsAtIndex:withObject:)
-    @NSManaged public func replaceSessions(at idx: Int, with value: HoopsSession)
-
-    @objc(replaceSessionsAtIndexes:withSessions:)
-    @NSManaged public func replaceSessions(at indexes: NSIndexSet, with values: [HoopsSession])
 
     @objc(addSessionsObject:)
     @NSManaged public func addToSessions(_ value: HoopsSession)
@@ -49,10 +40,10 @@ extension HoopsShot {
     @NSManaged public func removeFromSessions(_ value: HoopsSession)
 
     @objc(addSessions:)
-    @NSManaged public func addToSessions(_ values: NSOrderedSet)
+    @NSManaged public func addToSessions(_ values: NSSet)
 
     @objc(removeSessions:)
-    @NSManaged public func removeFromSessions(_ values: NSOrderedSet)
+    @NSManaged public func removeFromSessions(_ values: NSSet)
 
 }
 

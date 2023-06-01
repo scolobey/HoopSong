@@ -18,6 +18,11 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
     
     @IBOutlet var shotTableview: UITableView!
     
+    @IBOutlet var dailyPercentage: UILabel!
+    @IBOutlet var totalPercentage: UILabel!
+    @IBOutlet var dailyShots: UILabel!
+    @IBOutlet var totalShots: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupTableView()
@@ -27,6 +32,7 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
         super.viewWillAppear(true)
         fetch()
         shotTableview.reloadData()
+        setupStatsLabels()
     }
     
     func setupTableView() {
@@ -43,6 +49,17 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
         cell.backgroundColor = UIColor.white
         
         let shot = shots[indexPath.row]
+        let sessionList = shot.sessionArray
+        
+        let totalMakes = sessionList.map { $0.makes }.reduce(0, +)
+        let totalAttempts = sessionList.map { $0.attempts }.reduce(0, +)
+        var shotPercentage = Int16(0)
+        
+        if (totalAttempts > 0) {
+            shotPercentage = (100 * totalMakes)/totalAttempts
+        }
+        
+        cell.detailTextLabel?.text = "\(totalMakes)/\(totalAttempts) - \(shotPercentage)%"
         cell.textLabel?.text = shot.name
         
         return cell
@@ -56,6 +73,73 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
         if (editingStyle == UITableViewCell.EditingStyle.delete) {
             print("time to remove \(indexPath.row)")
         }
+    }
+    
+    func flattenMakes(sessionList: [HoopsSession]) -> Int16 {
+        return sessionList.map {
+            $0.makes
+        }.reduce(0, +)
+    }
+    
+    func flattenAttempts(sessionList: [HoopsSession]) -> Int16 {
+        return sessionList.map {
+            $0.attempts
+        }.reduce(0, +)
+    }
+    
+    func flattenTodaysMakes(sessionList: [HoopsSession]) -> Int16 {
+        let cal = Calendar.current
+        
+        return sessionList.filter {
+            cal.isDateInToday($0.createdAt!)
+        }.map {
+            $0.makes
+        }.reduce(0, +)
+    }
+    
+    func flattenTodaysAttempts(sessionList: [HoopsSession]) -> Int16 {
+        let cal = Calendar.current
+        
+        return sessionList.filter {
+            cal.isDateInToday($0.createdAt!)
+        }.map {
+            $0.attempts
+        }.reduce(0, +)
+    }
+    
+    func setupStatsLabels() {
+        
+        let totalMakes = shots.map{
+            flattenMakes(sessionList: $0.sessionArray)
+        }.reduce(0, +)
+        
+        let totalAttempts = shots.map{
+            flattenAttempts(sessionList: $0.sessionArray)
+        }.reduce(0, +)
+        
+        let todaysMakes = shots.map{
+            flattenTodaysMakes(sessionList: $0.sessionArray)
+        }.reduce(0, +)
+        
+        let todaysAttempts = shots.map{
+            flattenTodaysAttempts(sessionList: $0.sessionArray)
+        }.reduce(0, +)
+        
+        var dayPercent = Int16(0)
+        var cumulativePercent = Int16(0)
+        
+        if (totalAttempts > 0) {
+            cumulativePercent = (100 * totalMakes)/totalAttempts
+        }
+        
+        if (todaysAttempts > 0) {
+            dayPercent = (100 * todaysMakes)/todaysAttempts
+        }
+        
+        dailyPercentage.text = "\(dayPercent)%"
+        totalPercentage.text = "\(cumulativePercent)%"
+        dailyShots.text = "\(todaysAttempts) shots"
+        totalShots.text = "\(totalAttempts) shots"
     }
 
     func fetch() {

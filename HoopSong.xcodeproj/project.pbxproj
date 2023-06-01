@@ -16,10 +16,10 @@
 		9467D9662A229EE50042CB65 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9467D9642A229EE50042CB65 /* LaunchScreen.storyboard */; };
 		9467D96E2A22A0D50042CB65 /* ShotListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9467D96D2A22A0D50042CB65 /* ShotListViewController.swift */; };
 		9467D9702A22B18F0042CB65 /* SessionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9467D96F2A22B18F0042CB65 /* SessionViewController.swift */; };
-		94AA28CC2A279D2B007A5C68 /* HoopsSession+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AA28C82A279D2B007A5C68 /* HoopsSession+CoreDataClass.swift */; };
-		94AA28CD2A279D2B007A5C68 /* HoopsSession+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AA28C92A279D2B007A5C68 /* HoopsSession+CoreDataProperties.swift */; };
-		94AA28CE2A279D2B007A5C68 /* HoopsShot+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AA28CA2A279D2B007A5C68 /* HoopsShot+CoreDataClass.swift */; };
-		94AA28CF2A279D2B007A5C68 /* HoopsShot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AA28CB2A279D2B007A5C68 /* HoopsShot+CoreDataProperties.swift */; };
+		94AA28D42A2827E7007A5C68 /* HoopsSession+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AA28D02A2827E7007A5C68 /* HoopsSession+CoreDataClass.swift */; };
+		94AA28D52A2827E7007A5C68 /* HoopsSession+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AA28D12A2827E7007A5C68 /* HoopsSession+CoreDataProperties.swift */; };
+		94AA28D62A2827E7007A5C68 /* HoopsShot+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AA28D22A2827E7007A5C68 /* HoopsShot+CoreDataClass.swift */; };
+		94AA28D72A2827E7007A5C68 /* HoopsShot+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AA28D32A2827E7007A5C68 /* HoopsShot+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,10 +34,10 @@
 		9467D9672A229EE50042CB65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9467D96D2A22A0D50042CB65 /* ShotListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShotListViewController.swift; sourceTree = "<group>"; };
 		9467D96F2A22B18F0042CB65 /* SessionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionViewController.swift; sourceTree = "<group>"; };
-		94AA28C82A279D2B007A5C68 /* HoopsSession+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HoopsSession+CoreDataClass.swift"; sourceTree = "<group>"; };
-		94AA28C92A279D2B007A5C68 /* HoopsSession+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HoopsSession+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		94AA28CA2A279D2B007A5C68 /* HoopsShot+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HoopsShot+CoreDataClass.swift"; sourceTree = "<group>"; };
-		94AA28CB2A279D2B007A5C68 /* HoopsShot+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HoopsShot+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		94AA28D02A2827E7007A5C68 /* HoopsSession+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HoopsSession+CoreDataClass.swift"; sourceTree = "<group>"; };
+		94AA28D12A2827E7007A5C68 /* HoopsSession+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HoopsSession+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		94AA28D22A2827E7007A5C68 /* HoopsShot+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HoopsShot+CoreDataClass.swift"; sourceTree = "<group>"; };
+		94AA28D32A2827E7007A5C68 /* HoopsShot+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HoopsShot+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,10 +54,10 @@
 		9467D94A2A229EE30042CB65 = {
 			isa = PBXGroup;
 			children = (
-				94AA28C82A279D2B007A5C68 /* HoopsSession+CoreDataClass.swift */,
-				94AA28C92A279D2B007A5C68 /* HoopsSession+CoreDataProperties.swift */,
-				94AA28CA2A279D2B007A5C68 /* HoopsShot+CoreDataClass.swift */,
-				94AA28CB2A279D2B007A5C68 /* HoopsShot+CoreDataProperties.swift */,
+				94AA28D02A2827E7007A5C68 /* HoopsSession+CoreDataClass.swift */,
+				94AA28D12A2827E7007A5C68 /* HoopsSession+CoreDataProperties.swift */,
+				94AA28D22A2827E7007A5C68 /* HoopsShot+CoreDataClass.swift */,
+				94AA28D32A2827E7007A5C68 /* HoopsShot+CoreDataProperties.swift */,
 				9467D9552A229EE30042CB65 /* HoopSong */,
 				9467D9542A229EE30042CB65 /* Products */,
 			);
@@ -159,15 +159,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94AA28CD2A279D2B007A5C68 /* HoopsSession+CoreDataProperties.swift in Sources */,
+				94AA28D52A2827E7007A5C68 /* HoopsSession+CoreDataProperties.swift in Sources */,
 				9467D95B2A229EE30042CB65 /* ShotViewController.swift in Sources */,
-				94AA28CC2A279D2B007A5C68 /* HoopsSession+CoreDataClass.swift in Sources */,
+				94AA28D42A2827E7007A5C68 /* HoopsSession+CoreDataClass.swift in Sources */,
 				9467D96E2A22A0D50042CB65 /* ShotListViewController.swift in Sources */,
 				9467D9572A229EE30042CB65 /* AppDelegate.swift in Sources */,
 				9467D9702A22B18F0042CB65 /* SessionViewController.swift in Sources */,
 				9467D9612A229EE30042CB65 /* HoopSong.xcdatamodeld in Sources */,
-				94AA28CF2A279D2B007A5C68 /* HoopsShot+CoreDataProperties.swift in Sources */,
-				94AA28CE2A279D2B007A5C68 /* HoopsShot+CoreDataClass.swift in Sources */,
+				94AA28D72A2827E7007A5C68 /* HoopsShot+CoreDataProperties.swift in Sources */,
+				94AA28D62A2827E7007A5C68 /* HoopsShot+CoreDataClass.swift in Sources */,
 				9467D9592A229EE30042CB65 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

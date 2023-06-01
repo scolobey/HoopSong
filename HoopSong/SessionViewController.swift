@@ -62,8 +62,16 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
         let cell = shotTableview.dequeueReusableCell(withIdentifier: "sessionTableviewCell", for: indexPath)
         cell.backgroundColor = UIColor.white
         
-//        let session = shot.sessions![indexPath.row]
-        cell.textLabel?.text = "sesh"
+       
+        let session = shot.sessionArray[indexPath.row]
+        
+        let myFormatter = DateFormatter()
+        myFormatter.dateFormat = "MM/dd - HH:MM"
+        
+        cell.detailTextLabel?.text = "\(myFormatter.string(from: session.createdAt!))"
+        
+        
+        cell.textLabel?.text = "\(session.makes)/\(session.attempts)"
         
         return cell
     }
@@ -93,7 +101,6 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
     }
     
     func createSession(makes: Int16, attempts: Int16) {
-        print("creating sesh")
         let newSession = HoopsSession(context: context)
 
         newSession.makes = makes
@@ -108,5 +115,7 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
         catch {
             print("error saving session")
         }
+        
+        shotTableview.insertRows(at: [IndexPath(row: 0, section: 0)], with: .right)
     }
 }
