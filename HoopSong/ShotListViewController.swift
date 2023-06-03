@@ -72,8 +72,6 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if (editingStyle == .delete) {
-            print("delete yo")
-            
             //remove from data source
             deleteShot(shot: shots[indexPath.row])
             
@@ -151,14 +149,17 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
     }
 
     func fetch() {
-        print("fetching shots.")
         let request = NSFetchRequest<HoopsShot>(entityName: "HoopsShot")
         
         do {
             shots = try context.fetch(request)
         }
         catch {
-            print("error fetching shots")
+            let alert = UIAlertController(title: "Deepest Apologies", message: "There was an error fetching your shots. Email minedied@gmail.com for help.", preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            
+            self.present(alert, animated: true)
         }
     }
     
@@ -169,7 +170,11 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
             try context.save()
         }
         catch {
-            print("error deleting shot")
+            let alert = UIAlertController(title: "Oops!", message: "There was an error deleting your shot. Email minedied@gmail.com for help.", preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            
+            self.present(alert, animated: true)
         }
     }
     

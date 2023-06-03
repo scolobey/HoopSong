@@ -28,8 +28,6 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
         preparePickerViews()
         setupSubmitButton()
         
-        print(shot.sessions?.count as Any)
-        
         shotTableview.reloadData()
     }
     
@@ -54,7 +52,6 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("checking for sessions")
         return shot.sessions?.count ?? 0
     }
     
@@ -111,7 +108,11 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
             try context.save()
         }
         catch {
-            print("error saving session")
+            let alert = UIAlertController(title: "Oops!", message: "There was an error logging your session. Email minedied@gmail.com for help.", preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            
+            self.present(alert, animated: true)
         }
         
         shotTableview.insertRows(at: [IndexPath(row: 0, section: 0)], with: .right)

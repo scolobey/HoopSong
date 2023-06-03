@@ -58,10 +58,12 @@ class ShotViewController: UIViewController, UITextFieldDelegate {
             try context.save()
         }
         catch {
-            print("error saving context")
+            let alert = UIAlertController(title: "Noooo!", message: "There was an error savinging your shot. Email minedied@gmail.com for help.", preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            
+            self.present(alert, animated: true)
         }
     }
     
-
 }
-
