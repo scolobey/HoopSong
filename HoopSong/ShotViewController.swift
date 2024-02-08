@@ -12,6 +12,9 @@ class ShotViewController: UIViewController, UITextFieldDelegate {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     
+    var editBool = Bool()
+    var shot = HoopsShot()
+    
     @IBOutlet var shotTitleField: UITextField!
     @IBOutlet var submitButton: UIButton!
 
@@ -19,6 +22,11 @@ class ShotViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         shotTitleField.becomeFirstResponder()
         shotTitleField.delegate = self
+        
+        if editBool {
+            shotTitleField.text = shot.name
+        }
+        
         setupSubmitButton()
     }
     
@@ -27,12 +35,20 @@ class ShotViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func submitAction(_ sender:UIButton!) {
-        if let shotName = shotTitleField.text {
-            createShot(shotName: shotName)
-        }
         
+        if editBool {
+            if let shotName = shotTitleField.text {
+                editShot(shotName: shotName)
+            }
+        } else {
+            if let shotName = shotTitleField.text {
+                createShot(shotName: shotName)
+            }
+        }
+
         //dismiss everything and return
         if let navController = self.navigationController {
+            editBool = false
             navController.popViewController(animated: true)
         }
     }
@@ -59,6 +75,22 @@ class ShotViewController: UIViewController, UITextFieldDelegate {
         }
         catch {
             let alert = UIAlertController(title: "Noooo!", message: "There was an error savinging your shot. Email minedied@gmail.com for help.", preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            
+            self.present(alert, animated: true)
+        }
+    }
+    
+    func editShot(shotName: String) {
+        let oldShot = shot
+        oldShot.name = shotName
+        
+        do {
+            try context.save()
+        }
+        catch {
+            let alert = UIAlertController(title: "Noooo!", message: "There was an error changing your shot name. Email minedied@gmail.com for help.", preferredStyle: .actionSheet)
             
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             

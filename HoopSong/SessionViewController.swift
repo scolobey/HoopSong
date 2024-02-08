@@ -10,15 +10,19 @@ import UIKit
 class SessionViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource, UIPickerViewDelegate, UIPickerViewDataSource {
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    
+    let editTitleSegueIdentifier = "EditTitleSegue"
 
     var shot = HoopsShot()
     var sessionMakes = 5
     var sessionAttempts = 10
-
+    
     @IBOutlet var makesPicker: UIPickerView!
     @IBOutlet var attemptsPicker: UIPickerView!
     @IBOutlet var submitButton: UIButton!
     @IBOutlet var shotTableview: UITableView!
+    
+//    let editSessionTitle = UIBarButtonItem()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -78,8 +82,6 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
             //remove from data source
             deleteSession(session: shot.sessionArray[indexPath.row])
             
-            //remove from view
-//            shot.sessionArray.remove(at: indexPath.row)
             shotTableview.reloadData()
         }
     }
@@ -143,6 +145,15 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
             alert.addAction(UIAlertAction(title: "OK", style: .default))
             
             self.present(alert, animated: true)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if  segue.identifier == editTitleSegueIdentifier,
+            let destination = segue.destination as? ShotViewController
+        {
+            destination.editBool = true
+            destination.shot = shot
         }
     }
     
