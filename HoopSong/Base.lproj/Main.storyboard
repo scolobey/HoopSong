@@ -196,7 +196,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6o9-vN-xxh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1450" y="-457"/>
+            <point key="canvasLocation" x="1886" y="-515"/>
         </scene>
         <!--Session View Controller-->
         <scene sceneID="sn6-Qq-Zec">
@@ -217,6 +217,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="yMU-mQ-Rv5">
                                 <rect key="frame" x="0.0" y="102.99999999999997" width="393" height="374.33333333333326"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="separatorColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="sessionTableviewCell" textLabel="L4v-ea-FIO" detailTextLabel="8ld-48-ZYK" style="IBUITableViewCellStyleValue1" id="R8J-DQ-OS0">
                                         <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
@@ -241,6 +242,7 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
@@ -285,7 +287,13 @@
                             <constraint firstItem="XCb-fc-bHt" firstAttribute="width" secondItem="WXE-A3-nUZ" secondAttribute="width" multiplier="0.529262" id="z1O-A0-sKU"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="tCg-P2-cCC"/>
+                    <navigationItem key="navigationItem" id="tCg-P2-cCC">
+                        <barButtonItem key="rightBarButtonItem" systemItem="edit" id="QCM-QA-IYk">
+                            <connections>
+                                <segue destination="CGC-ad-ZPf" kind="show" id="eo6-pv-rBL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="attemptsPicker" destination="ZvQ-PA-1X5" id="Znl-pA-QQU"/>
                         <outlet property="makesPicker" destination="XCb-fc-bHt" id="a9q-OQ-umI"/>
@@ -295,7 +303,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Xea-kx-Ccj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1478.6259541984732" y="240.84507042253523"/>
+            <point key="canvasLocation" x="1886" y="376"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="jEx-ob-S7h">
@@ -316,6 +324,9 @@
             <point key="canvasLocation" x="-585.49618320610682" y="-111.26760563380282"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="eo6-pv-rBL"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

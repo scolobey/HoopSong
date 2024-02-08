@@ -57,8 +57,6 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = shotTableview.dequeueReusableCell(withIdentifier: "sessionTableviewCell", for: indexPath)
-        cell.backgroundColor = UIColor.white
-        
        
         let session = shot.sessionArray[indexPath.row]
         
@@ -69,6 +67,21 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
         cell.textLabel?.text = "\(myFormatter.string(from: session.createdAt!))"
         
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        return true
+    }
+
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if (editingStyle == .delete) {
+            //remove from data source
+            deleteSession(session: shot.sessionArray[indexPath.row])
+            
+            //remove from view
+//            shot.sessionArray.remove(at: indexPath.row)
+            shotTableview.reloadData()
+        }
     }
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -117,4 +130,20 @@ class SessionViewController: UIViewController, UITableViewDelegate,  UITableView
         
         shotTableview.insertRows(at: [IndexPath(row: 0, section: 0)], with: .right)
     }
+    
+    func deleteSession(session: HoopsSession) {
+        shot.removeFromSessions(session)
+        
+        do {
+            try context.save()
+        }
+        catch {
+            let alert = UIAlertController(title: "Oops!", message: "There was an error deleting your session. Email minedied@gmail.com for help.", preferredStyle: .actionSheet)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default))
+            
+            self.present(alert, animated: true)
+        }
+    }
+    
 }
