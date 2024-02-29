@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import CoreData
+import StoreKit
 
 class ShotListViewController: UIViewController, UITableViewDelegate,  UITableViewDataSource {
     
@@ -33,6 +34,14 @@ class ShotListViewController: UIViewController, UITableViewDelegate,  UITableVie
         fetch()
         shotTableview.reloadData()
         setupStatsLabels()
+        
+        if let scene = UIApplication.shared.connectedScenes.first(where: { $0.activationState == .foregroundActive }) as? UIWindowScene {
+            
+            if shots.count > 3 && shots[1].sessionArray.map({ $0.makes }).reduce(0, +) > 25 && !UserDefaults.standard.bool(forKey: "ExecuteOnce") {
+                SKStoreReviewController.requestReview(in: scene)
+                UserDefaults.standard.set(true, forKey: "ExecuteOnce")
+            }
+        }
     }
     
     func setupTableView() {
